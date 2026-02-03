@@ -14,7 +14,7 @@ import {
 	DOUBLE_NEW_LINE_CHAR,
 	HANDLER_LOCATION,
 	ICON_NAME,
-	MARKDOWN_FILE_EXTENSION,
+	MARKDOWN_FILE_EXTENSIONS,
 	NEW_LINE_CHAR,
 	PLUGIN_NAME,
 	SECTION_CHAR,
@@ -59,10 +59,10 @@ export default class AdvancedMerge extends Plugin {
 
 		const documentEntries: Array<TFile> = [];
 		Vault.recurseChildren(folder, (folderOrFile: TFile) => {
-			// For merging we are including only *.md files
+			// For merging we are including only *.md and *.mdx files
 			if (
 				folderOrFile instanceof TFile &&
-				folderOrFile.extension == MARKDOWN_FILE_EXTENSION
+				MARKDOWN_FILE_EXTENSIONS.includes(folderOrFile.extension)
 			) {
 				console.log(`Found a file: ${folderOrFile.name}`);
 				documentEntries.push(folderOrFile);
